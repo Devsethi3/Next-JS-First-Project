@@ -1,0 +1,27 @@
+.mobileLinks,.menuButton {
+    display: none;
+}
+@media screen and (max-width: 868px) {
+    .links{
+        display: none;
+    }
+    .menuButton{
+        display: block;
+        cursor: pointer;
+    }
+    .mobileLinks {
+        position: absolute;
+        top: 100px;
+        right: 0;
+        width: 50%;
+        height: calc(100vh - 100px);
+        background: #8831c6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        overflow: hidden;
+        transition: height .5s ease-in-out;
+    }
+}
