@@ -1,6 +1,8 @@
+"use client"
 import Image from "next/image";
 
 const ContactPage = () => {
+  console.log("It Loads Here");
   return (
     <>
       <div className="grid grid-cols-2 gap-[5rem] items-center">
@@ -21,8 +23,8 @@ const ContactPage = () => {
               <span className="text-[.8rem] opacity-80">Phone Number</span>
               <input className="py-3 px-5 border-none outline-none bg-[#ffffff14] rounded-sm" type="text" placeholder="Phone Number (Optional)" />
             </div>
-            <textarea className="w-full mt-[.5rem] resize-none py-3 px-5 border-none outline-none bg-[#ffffff14] rounded-sm"  rows="6" placeholder="Your Message"></textarea>
-            <button className="w-full mt-[1rem] rounded-sm bg-[#8831c6] py-2">Send</button>
+            <textarea className="w-full mt-[.5rem] resize-none py-3 px-5 border-none outline-none bg-[#ffffff14] rounded-sm" rows="5" placeholder="Your Message"></textarea>
+            <button className="w-full mt-[1rem] rounded-sm bg-[#8831c6] py-3">Send</button>
           </form>
         </div>
       </div>
