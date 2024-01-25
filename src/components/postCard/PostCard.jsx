@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
   return (
     <>
       <div>
@@ -14,10 +14,12 @@ const PostCard = () => {
           <span className="rotate-90">01.01.2024</span>
         </div>
         <div className="bottom mt-[1rem] flex flex-col p-[1rem]">
-          <h1 className="text-3xl font-bold">Title</h1>
-          <p className="py-[1rem] opacity-70">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum odit ipsam tempore reiciendis incidunt necessitatibus nostrum expedita rerum tenetur.</p>
+          <h1 className="text-3xl font-bold">{post.title}</h1>
+          <p className="py-[1rem] opacity-70">
+            {post.body}
+          </p>
           <Link
-            href="/blog/post"
+            href={`/blog/${post.id}`}
             className="mt-[.5rem] text-center rounded-sm hover:underline w-full bg-[#8831c6] py-2"
           >
             Read More
