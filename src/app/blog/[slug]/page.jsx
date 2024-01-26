@@ -1,19 +1,11 @@
 import PostUser from "@/components/postUser/PostUser";
+import { getPost } from "@/data";
 import Image from "next/image";
 import { Suspense } from "react";
 
-const getData = async (slug) => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
-
-  if (!res.ok) {
-    throw new Error("Something went wrong");
-  }
-  return res.json();
-};
-
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
-  const post = await getData(slug);
+  const post = await getPost(slug);
   return (
     <>
       <div className="grid my-[3rem] grid-cols-2">
@@ -26,7 +18,7 @@ const SinglePostPage = async ({ params }) => {
           />
         </div>
         <div className="content ml-[-10rem]">
-          <h1 className="text-5xl mb-[4rem] font-bold">{post.title}</h1>
+          <h1 className="text-5xl mb-[4rem] font-bold">{post?.title}</h1>
           <div className="details flex items-center gap-[3rem]">
             <div className="author flex pr-[2rem] border-r-2 border-r-[#ffffff2e] items-center gap-[1rem]">
               <Image
@@ -35,9 +27,11 @@ const SinglePostPage = async ({ params }) => {
                 height="45"
                 className="objec-cover rounded-full"
               />
-              <Suspense fallback={<div>Loading...</div>}>
-                <PostUser userId={post.userId} />
-              </Suspense>
+              {post && (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <PostUser userId={post.userId} />
+                </Suspense>
+              )}
             </div>
             <div className="publish">
               <h4 className="font-semibold opacity-60 text-lg">Published</h4>
@@ -45,7 +39,7 @@ const SinglePostPage = async ({ params }) => {
             </div>
           </div>
           <p className="mt-[5rem] opacity-70 text-xl">
-            {post.body}
+            {post?.body}
             {/* Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
             consectetur reiciendis quidem obcaecati quod nostrum, quis sunt,
             quas doloribus hic vitae in nam! Doloribus dignissimos ad minima
