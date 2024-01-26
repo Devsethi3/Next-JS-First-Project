@@ -10,6 +10,8 @@ const posts = [
   { id: 4, title: "Post 4", body: "....", userId: 2 },
   { id: 5, title: "Post 5", body: "....", userId: 3 },
   { id: 6, title: "Post 6", body: "....", userId: 3 },
+  { id: 7, title: "Post 7", body: "....", userId: 4 },
+  { id: 8, title: "Post 8", body: "....", userId: 4 },
 ];
 
 export const getPosts = async () => {
