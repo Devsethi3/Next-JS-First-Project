@@ -6,7 +6,7 @@ const PostUser = async ({ userId }) => {
     <>
       <div className="name">
         <h4 className="font-semibold opacity-60 text-lg">Author</h4>
-        <p className="text-[.8rem]">{user.username}</p>
+        {/* <p className="text-[.8rem]">{user.username}</p> */}
       </div>
     </>
   );

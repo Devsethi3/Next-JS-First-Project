@@ -9,14 +9,11 @@ const SinglePostPage = async ({ params }) => {
   return (
     <>
       <div className="grid my-[3rem] grid-cols-2">
-        <div className="img w-[100%]">
-          <Image
-            src="https://images.pexels.com/photos/19581193/pexels-photo-19581193/free-photo-of-quaint-izakaya-japan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            width={400}
-            height={600}
-            objectFit="cover"
-          />
-        </div>
+        {post && (
+          <div className="img w-[100%]">
+            <Image src={post.img} width={400} height={600} objectFit="cover" />
+          </div>
+        )}
         <div className="content ml-[-10rem]">
           <h1 className="text-5xl mb-[4rem] font-bold">{post?.title}</h1>
           <div className="details flex items-center gap-[3rem]">
@@ -39,7 +36,7 @@ const SinglePostPage = async ({ params }) => {
             </div>
           </div>
           <p className="mt-[5rem] opacity-70 text-xl">
-            {post?.body}
+            {post.desc}
             {/* Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
             consectetur reiciendis quidem obcaecati quod nostrum, quis sunt,
             quas doloribus hic vitae in nam! Doloribus dignissimos ad minima
