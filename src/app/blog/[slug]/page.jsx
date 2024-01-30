@@ -3,6 +3,22 @@ import { getPost } from "@/data";
 import Image from "next/image";
 import { Suspense } from "react";
 
+const post = await getPost(slug);
+return {
+  title: post.title,
+  description: post.desc,
+};
+
+const getData = async () => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
+  return res.json();
+};
+
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
   const post = await getPost(slug);
@@ -18,12 +34,6 @@ const SinglePostPage = async ({ params }) => {
           <h1 className="text-5xl mb-[4rem] font-bold">{post?.title}</h1>
           <div className="details flex items-center gap-[3rem]">
             <div className="author flex pr-[2rem] border-r-2 border-r-[#ffffff2e] items-center gap-[1rem]">
-              <Image
-                src="https://images.pexels.com/photos/6821977/pexels-photo-6821977.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                width="45"
-                height="45"
-                className="objec-cover rounded-full"
-              />
               {post && (
                 <Suspense fallback={<div>Loading...</div>}>
                   <PostUser userId={post.userId} />
@@ -32,7 +42,9 @@ const SinglePostPage = async ({ params }) => {
             </div>
             <div className="publish">
               <h4 className="font-semibold opacity-60 text-lg">Published</h4>
-              <p className="text-[.8rem]">-11-04T09:30</p>
+              <p className="text-[.8rem]">
+                {post.createdAt.toString().slice(4, 16)}
+              </p>
             </div>
           </div>
           <p className="mt-[5rem] opacity-70 text-xl">

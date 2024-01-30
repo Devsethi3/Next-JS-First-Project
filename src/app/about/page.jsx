@@ -1,4 +1,8 @@
 import Image from "next/image";
+export const metadata = {
+  title: "Next JS About Page",
+  description: "Welcome to my About Page",
+};
 const AboutPage = () => {
   return (
     <>
